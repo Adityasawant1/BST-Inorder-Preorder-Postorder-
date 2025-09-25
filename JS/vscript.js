@@ -15,7 +15,7 @@ class Node {
         this.value = value;
         this.left = null;
         this.right = null;
-        this.x = x; 
+        this.x = x;
         this.y = y;
     }
 }
@@ -33,19 +33,14 @@ function insert(value) {
     drawTree();
 }
 
+// Recursive insertion with coordinates
 function insertRec(node, value, x, y, offset) {
     if (value < node.value) {
-        if (!node.left) {
-            node.left = new Node(value, x - offset, y + 80);
-        } else {
-            insertRec(node.left, value, x - offset, y + 80, offset / 2);
-        }
+        if (!node.left) node.left = new Node(value, x - offset, y + 80);
+        else insertRec(node.left, value, x - offset, y + 80, offset / 2);
     } else if (value > node.value) {
-        if (!node.right) {
-            node.right = new Node(value, x + offset, y + 80);
-        } else {
-            insertRec(node.right, value, x + offset, y + 80, offset / 2);
-        }
+        if (!node.right) node.right = new Node(value, x + offset, y + 80);
+        else insertRec(node.right, value, x + offset, y + 80, offset / 2);
     } else {
         alert("Duplicate values not allowed in BST!");
     }
@@ -57,26 +52,26 @@ function drawTree() {
     drawNode(root);
 }
 
+// Draw individual node and edges
 function drawNode(node) {
     if (!node) return;
 
-    // Draw left edge
     if (node.left) {
         ctx.beginPath();
         ctx.moveTo(node.x, node.y);
         ctx.lineTo(node.left.x, node.left.y);
         ctx.stroke();
+        drawNode(node.left);
     }
 
-    // Draw right edge
     if (node.right) {
         ctx.beginPath();
         ctx.moveTo(node.x, node.y);
         ctx.lineTo(node.right.x, node.right.y);
         ctx.stroke();
+        drawNode(node.right);
     }
 
-    // Draw node
     ctx.beginPath();
     ctx.arc(node.x, node.y, 20, 0, 2 * Math.PI);
     ctx.fillStyle = "#4CAF50";
@@ -88,40 +83,63 @@ function drawNode(node) {
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
     ctx.fillText(node.value, node.x, node.y);
-
-    drawNode(node.left);
-    drawNode(node.right);
 }
 
 // Traversals
-function inorder(node, result = []) {
+function inorder(node, arr = []) {
     if (node) {
-        inorder(node.left, result);
-        result.push(node.value);
-        inorder(node.right, result);
+        inorder(node.left, arr);
+        arr.push(node);
+        inorder(node.right, arr);
     }
-    return result;
+    return arr;
 }
 
-function preorder(node, result = []) {
+function preorder(node, arr = []) {
     if (node) {
-        result.push(node.value);
-        preorder(node.left, result);
-        preorder(node.right, result);
+        arr.push(node);
+        preorder(node.left, arr);
+        preorder(node.right, arr);
     }
-    return result;
+    return arr;
 }
 
-function postorder(node, result = []) {
+function postorder(node, arr = []) {
     if (node) {
-        postorder(node.left, result);
-        postorder(node.right, result);
-        result.push(node.value);
+        postorder(node.left, arr);
+        postorder(node.right, arr);
+        arr.push(node);
     }
-    return result;
+    return arr;
 }
 
-// Event Listeners
+// Highlight traversal step-by-step
+function highlightTraversal(nodes) {
+    let i = 0;
+    const sequence = [];
+    const interval = setInterval(() => {
+        if (i >= nodes.length) {
+            clearInterval(interval);
+            traversalResult.textContent = "Traversal: " + sequence.join(" → ");
+            return;
+        }
+
+        drawTree(); // redraw base tree
+        // Highlight current node
+        ctx.beginPath();
+        ctx.arc(nodes[i].x, nodes[i].y, 20, 0, 2 * Math.PI);
+        ctx.fillStyle = "yellow";
+        ctx.fill();
+        ctx.stroke();
+        ctx.fillStyle = "#000";
+        ctx.fillText(nodes[i].value, nodes[i].x, nodes[i].y);
+
+        sequence.push(nodes[i].value);
+        i++;
+    }, 800);
+}
+
+// Event listeners
 insertNodeBtn.addEventListener('click', () => {
     const value = parseInt(nodeValueInput.value);
     if (!isNaN(value)) {
@@ -132,17 +150,9 @@ insertNodeBtn.addEventListener('click', () => {
     }
 });
 
-inorderBtn.addEventListener('click', () => {
-    traversalResult.textContent = "Inorder: " + inorder(root).join(" → ");
-});
-
-preorderBtn.addEventListener('click', () => {
-    traversalResult.textContent = "Preorder: " + preorder(root).join(" → ");
-});
-
-postorderBtn.addEventListener('click', () => {
-    traversalResult.textContent = "Postorder: " + postorder(root).join(" → ");
-});
+inorderBtn.addEventListener('click', () => highlightTraversal(inorder(root)));
+preorderBtn.addEventListener('click', () => highlightTraversal(preorder(root)));
+postorderBtn.addEventListener('click', () => highlightTraversal(postorder(root)));
 
 resetBtn.addEventListener('click', () => {
     root = null;
