@@ -1,0 +1,200 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Container */
+.container {
+    display: flex;
+    justify-content: center;
+    background: #f0f4f8;
+    padding: 50px 20px;
+    min-height: 100vh;
+}
+
+/* Main Panel */
+.main-panel {
+    max-width: 900px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Page Title */
+.page-title {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.page-title h1 {
+    font-size: 2.8rem;
+    color: #3498db;
+    font-weight: bold;
+    text-shadow: 1px 1px 6px rgba(0,0,0,0.15);
+}
+#introduction h1 {
+    background-color: #3498db; 
+    color: white;              
+    padding: 15px 20px;          
+    border-radius: 8px;         
+    display: inline-block;       
+    margin-bottom: 20px;         
+}
+
+/* Sections */
+.section {
+    margin-bottom: 60px;
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+
+.section h1, .section h2 {
+    margin-bottom: 25px;
+}
+
+.section h1 {
+    color: #2c3e50;
+    font-size: 2.2rem;
+}
+
+.section h2 {
+    margin-top: 30px;
+    color: #34495e;
+    font-size: 1.8rem;
+}
+
+.section p {
+    margin-bottom: 15px;
+    line-height: 1.8;
+    font-size: 1rem;
+    color: #555;
+}
+
+.section ul {
+    margin: 15px 0 20px 0;
+    padding-left: 20px;
+    text-align: left;
+}
+
+.section ul li {
+    margin-bottom: 10px;
+    color: #555;
+}
+
+/* Intro Buttons */
+.intro-buttons {
+    margin-top: 30px;
+}
+
+.intro-buttons .btn {
+    text-decoration: none;
+    background-color: #3498db;
+    color: #fff;
+    padding: 12px 25px;
+    margin: 10px;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: 0.3s;
+    display: inline-block;
+}
+
+.intro-buttons .btn:hover {
+    background-color: #2980b9;
+}
+
+/* Team Members Horizontal Layout */
+.team-members {
+    display: flex;
+    justify-content: center;
+    gap: 40px; 
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.team-member {
+    display: flex;
+    align-items: center;
+    background-color: #eaf0f7;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 350px;
+    transition: transform 0.3s;
+}
+
+.team-member:hover {
+    transform: translateY(-5px);
+}
+
+.team-member img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    margin-right: 20px;
+    object-fit: cover;
+    border: 3px solid #3498db;
+}
+
+.member-info h3 {
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+    color: #2c3e50;
+}
+
+.member-info p {
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #34495e;
+}
+
+.member-info small {
+    color: #7f8c8d;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .page-title h1 {
+        font-size: 2.2rem;
+    }
+
+    .section {
+        padding: 30px;
+    }
+
+    .intro-buttons .btn {
+        padding: 10px 20px;
+        margin: 8px;
+    }
+
+    .team-member {
+        max-width: 100%;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .team-member img {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-title h1 {
+        font-size: 1.8rem;
+    }
+
+    .section {
+        padding: 20px;
+    }
+
+    .intro-buttons .btn {
+        padding: 8px 15px;
+        margin: 5px;
+    }
+}
