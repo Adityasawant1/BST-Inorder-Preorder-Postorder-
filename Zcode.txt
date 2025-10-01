@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Binary Search Tree Visualization</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
+
+    body {
+      background: #f0f4f8;
+      color: #333;
+    }
+
+    /* Header / Navbar */
+    header {
+      background: #3498db;
+      color: white;
+      padding: 15px 30px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav h1 {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #f1c40f;
+    }
+
+    /* Sections */
+    section {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    section h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #2c3e50;
+      text-align: center;
+    }
+
+    section p, section ul {
+      line-height: 1.7;
+      margin-bottom: 15px;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    /* Visualization */
+    #visualize {
+      text-align: center;
+    }
+
+    #graphCanvas {
+      border: 2px solid #3498db;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+
+    .controls {
+      margin-top: 20px;
+    }
+
+    .controls input {
+      padding: 10px;
+      border: 2px solid #3498db;
+      border-radius: 6px;
+      width: 120px;
+    }
+
+    .controls button {
+      background: #3498db;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      margin: 5px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .controls button:hover {
+      background: #2980b9;
+    }
+
+    #traversalResult {
+      margin-top: 20px;
+      font-weight: bold;
+      color: #2c3e50;
+    }
+
+    /* Team */
+    .team-members {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .team-member {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 20px;
+      width: 260px;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .team-member:hover {
+      transform: translateY(-5px);
+    }
+
+    .team-member img {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      border: 3px solid #3498db;
+      margin-bottom: 15px;
+      object-fit: cover;
+    }
+
+    .team-member h3 {
+      margin-bottom: 5px;
+      color: #2c3e50;
+    }
+
+    .team-member p {
+      font-weight: 500;
+      color: #34495e;
+    }
+
+    .team-member small {
+      color: #7f8c8d;
+    }
+
+    /* Footer */
+    footer {
+      background: #2c3e50;
+      color: #fff;
+      text-align: center;
+      padding: 15px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <nav>
+      <h1>BST Project</h1>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#visualize">Visualize</a></li>
+        <li><a href="#contributors">Contributors</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Introduction -->
+  <section id="home">
+    <h2>Binary Search Tree Visualization</h2>
+    <p>A <strong>Binary Search Tree (BST)</strong> is a specialized type of binary tree that keeps its elements sorted. Each node contains a value with the following properties:</p>
+    <ul>
+      <li>Left subtree has values smaller than the node.</li>
+      <li>Right subtree has values larger than the node.</li>
+      <li>Both left and right are also BSTs.</li>
+    </ul>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <h2>About BST</h2>
+    <p>BSTs make searching, insertion, and deletion efficient (usually <strong>O(log n)</strong> for balanced trees). They are used for:</p>
+    <ul>
+      <li>Dynamic sets and dictionaries</li>
+      <li>Maintaining sorted data</li>
+      <li>Database indexing and searching</li>
+      <li>Range queries and nearest-neighbor searches</li>
+    </ul>
+    <p><strong>Traversals:</strong></p>
+    <ul>
+      <li><strong>Inorder:</strong> Left → Root → Right (ascending order)</li>
+      <li><strong>Preorder:</strong> Root → Left → Right</li>
+      <li><strong>Postorder:</strong> Left → Right → Root</li>
+    </ul>
+  </section>
+
+  <!-- Visualization -->
+  <section id="visualize">
+    <h2>BST Visualization</h2>
+    <div class="controls">
+      <input type="number" id="nodeValue" placeholder="Enter value">
+      <button id="insertNodeBtn">Insert Node</button>
+      <button id="inorderBtn">Inorder</button>
+      <button id="preorderBtn">Preorder</button>
+      <button id="postorderBtn">Postorder</button>
+      <button id="resetBtn">Reset</button>
+    </div>
+    <canvas id="graphCanvas" width="900" height="500"></canvas>
+    <p id="traversalResult">Click a traversal to see output.</p>
+  </section>
+
+  <!-- Contributors -->
+  <section id="contributors">
+    <h2>Project Contributors</h2>
+    <div class="team-members">
+      <div class="team-member">
+        <img src="./Assets/Profile.jpeg" alt="Aditya Sawant">
+        <h3>Aditya Sawant</h3>
+        <p>Handled Visual Representation</p>
+        <small>Expert in UI/UX and tree visualization</small>
+      </div>
+      <div class="team-member">
+        <img src="./Assets/chirag.jpeg" alt="Chirag Satpute">
+        <h3>Chirag Satpute</h3>
+        <p>Worked on BST Algorithms</p>
+        <small>Expert in BST and data structures</small>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 BST Visualization Project | Aditya & Chirag</p>
+  </footer>
+
+  <!-- Your Script -->
+  <script>
+    // Get DOM elements
+    const canvas = document.getElementById('graphCanvas');
+    const ctx = canvas.getContext('2d');
+    const insertNodeBtn = document.getElementById('insertNodeBtn');
+    const nodeValueInput = document.getElementById('nodeValue');
+    const inorderBtn = document.getElementById('inorderBtn');
+    const preorderBtn = document.getElementById('preorderBtn');
+    const postorderBtn = document.getElementById('postorderBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const traversalResult = document.getElementById('traversalResult');
+
+    class Node {
+      constructor(value, x, y) {
+        this.value = value;
+        this.left = null;
+        this.right = null;
+        this.x = x;
+        this.y = y;
+      }
+    }
+
+    let root = null;
+
+    function insert(value) {
+      if (!root) {
+        root = new Node(value, canvas.width / 2, 50);
+      } else {
+        insertRec(root, value, canvas.width / 2, 50, canvas.width / 4);
+      }
+      drawTree();
+    }
+
+    function insertRec(node, value, x, y, offset) {
+      if (value < node.value) {
+        if (!node.left) node.left = new Node(value, x - offset, y + 80);
+        else insertRec(node.left, value, x - offset, y + 80, offset / 2);
+      } else if (value > node.value) {
+        if (!node.right) node.right = new Node(value, x + offset, y + 80);
+        else insertRec(node.right, value, x + offset, y + 80, offset / 2);
+      } else {
+        alert("Duplicate values not allowed in BST!");
+      }
+    }
+
+    function drawTree() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      drawNode(root);
+    }
+
+    function drawNode(node) {
+      if (!node) return;
+      if (node.left) {
+        ctx.beginPath();
+        ctx.moveTo(node.x, node.y);
+        ctx.lineTo(node.left.x, node.left.y);
+        ctx.stroke();
+        drawNode(node.left);
+      }
+      if (node.right) {
+        ctx.beginPath();
+        ctx.moveTo(node.x, node.y);
+        ctx.lineTo(node.right.x, node.right.y);
+        ctx.stroke();
+        drawNode(node.right);
+      }
+      ctx.beginPath();
+      ctx.arc(node.x, node.y, 20, 0, 2 * Math.PI);
+      ctx.fillStyle = "#4CAF50";
+      ctx.fill();
+      ctx.stroke();
+      ctx.fillStyle = "#fff";
+      ctx.font = "16px Arial";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText(node.value, node.x, node.y);
+    }
+
+    function inorder(node, arr = []) {
+      if (node) {
+        inorder(node.left, arr);
+        arr.push(node);
+        inorder(node.right, arr);
+      }
+      return arr;
+    }
+
+    function preorder(node, arr = []) {
+      if (node) {
+        arr.push(node);
+        preorder(node.left, arr);
+        preorder(node.right, arr);
+      }
+      return arr;
+    }
+
+    function postorder(node, arr = []) {
+      if (node) {
+        postorder(node.left, arr);
+        postorder(node.right, arr);
+        arr.push(node);
+      }
+      return arr;
+    }
+
+    function highlightTraversal(nodes) {
+      let i = 0;
+      const sequence = [];
+      const interval = setInterval(() => {
+        if (i >= nodes.length) {
+          clearInterval(interval);
+          traversalResult.textContent = "Traversal: " + sequence.join(" → ");
+          return;
+        }
+        drawTree();
+        ctx.beginPath();
+        ctx.arc(nodes[i].x, nodes[i].y, 20, 0, 2 * Math.PI);
+        ctx.fillStyle = "yellow";
+        ctx.fill();
+        ctx.stroke();
+        ctx.fillStyle = "#000";
+        ctx.fillText(nodes[i].value, nodes[i].x, nodes[i].y);
+        sequence.push(nodes[i].value);
+        i++;
+      }, 800);
+    }
+
+    insertNodeBtn.addEventListener('click', () => {
+      const value = parseInt(nodeValueInput.value);
+      if (!isNaN(value)) {
+        insert(value);
+        nodeValueInput.value = '';
+      } else {
+        alert("Enter a valid number!");
+      }
+    });
+
+    inorderBtn.addEventListener('click', () => highlightTraversal(inorder(root)));
+    preorderBtn.addEventListener('click', () => highlightTraversal(preorder(root)));
+    postorderBtn.addEventListener('click', () => highlightTraversal(postorder(root)));
+
+    resetBtn.addEventListener('click', () => {
+      root = null;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      traversalResult.textContent = "Click a traversal to see output.";
+    });
+  </script>
+</body>
+</html>
