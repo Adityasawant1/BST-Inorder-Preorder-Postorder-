@@ -1,57 +1,138 @@
+body {
+  font-family: 'Poppins', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  background: #f4f6f9;
+  color: #333;
+}
 
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
-    background: #f4f6f9;
-    color: #333;
+
+.content-section {
+  max-width: 1100px;        
+  margin: 50px auto;
+  padding: 40px;
+  background: linear-gradient(145deg, #f9fafc, #eef3f8);
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.content-section:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+.content-section h2 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 25px;
+  font-size: 2em;
+  border-bottom: 3px solid #3498db;
+  display: inline-block;
+  padding-bottom: 6px;
+}
+
+.content-section p {
+  font-size: 16px;
+  margin-bottom: 15px;
+  text-align: justify;
+}
+
+.content-section ul {
+  margin-left: 25px;
+  padding-left: 10px;
+}
+
+.highlight {
+  color: #e74c3c;
+  font-weight: bold;
+}
+
+#about {
+  background: linear-gradient(145deg, #f9fafc, #eef3f8);
+  border-radius: 12px;
+  padding: 60px 30px;
+}
+
+#about h2 {
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+/* 🌟 Traversal Container */
+.traversal-container {
+  display: flex;
+  justify-content: space-between;   /* Even spacing */
+  align-items: stretch;
+  flex-wrap: wrap;                  /* Wraps on smaller screens */
+  gap: 30px;                        /* Balanced gap */
+  margin-top: 40px;
+  padding: 0 10px;
+}
+
+/* 📦 Traversal Card */
+.traversal-card {
+  background: #fff;
+  flex: 1 1 calc(33.33% - 30px);    /* 3 cards per row */
+  min-width: 300px;
+  max-width: 340px;
+  padding: 25px;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.traversal-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+}
+
+.traversal-card h4 {
+  color: #1a5276;
+  font-size: 1.2em;
+  margin-bottom: 8px;
+}
+
+.traversal-card small {
+  display: block;
+  color: #777;
+  margin-bottom: 10px;
+}
+
+.traversal-card p {
+  font-size: 15px;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.traversal-card ol {
+  margin-left: 20px;
+  margin-bottom: 10px;
+}
+
+.steps {
+  background: #f1f5ff;
+  padding: 10px;
+  border-left: 4px solid #007bff;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+/* 🌐 Responsive Design */
+@media (max-width: 992px) {
+  .traversal-container {
+    justify-content: center;
   }
-
-  /* General section styling */
-  .content-section {
-    max-width: 900px;
-    margin: 40px auto;
-    padding: 30px;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    transition: 0.3s ease;
+  .traversal-card {
+    flex: 1 1 45%;
   }
+}
 
-  .content-section:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+@media (max-width: 600px) {
+  .traversal-card {
+    flex: 1 1 100%;
   }
-
-  .content-section h2 {
-    text-align: center;
-    color: #2c3e50;
-    margin-bottom: 15px;
-    font-size: 26px;
-    border-bottom: 3px solid #3498db;
-    display: inline-block;
-    padding-bottom: 5px;
-  }
-
-  .content-section p {
-    font-size: 16px;
-    margin-bottom: 15px;
-    text-align: justify;
-  }
-
-  .content-section ul {
-    margin-left: 20px;
-    padding-left: 15px;
-  }
-
-  .content-section ul li {
-    margin: 8px 0;
-    font-size: 15px;
-  }
-
-  .highlight {
-    color: #e74c3c;
-    font-weight: bold;
-  }
-
+}

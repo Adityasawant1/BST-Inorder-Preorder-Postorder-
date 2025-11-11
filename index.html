@@ -39,38 +39,112 @@
 <section id="home" class="content-section">
   <h2>Binary Search Tree Visualization</h2>
   <p>
-    A <span class="highlight">Binary Search Tree (BST)</span> is a specialized type of binary tree that keeps its elements sorted. Each node contains a value with the following properties:
+    A <span class="highlight">Binary Search Tree</span> is a special type of binary tree that maintains its elements in a sorted manner.
+    It is a non-linear data structure that stores data in the form of nodes, where each node contains a key (or value) and references to left and right child nodes.
+    <br><br>
+    <span style="font-weight: 600;">A Binary Search Tree is a binary tree in which every node satisfies the following property:</span>
   </p>
+
+  <!-- 🖼️ Image between paragraph and list -->
+  
   <ul>
-    <li>Left subtree has values smaller than the node.</li>
-    <li>Right subtree has values larger than the node.</li>
+    <li>The left child (and its entire left subtree) contains values less than the node’s value.</li>
+    <li>The right child (and its entire right subtree) contains values greater than the node’s value.</li>
     <li>Both left and right are also BSTs.</li>
   </ul>
+  
+  <img src="Assets/bst.png" alt="Binary Search Tree Diagram" class="intro-image">
+  <p>
+    This property makes searching, insertion, and deletion operations faster as compared to a normal binary tree.
+  </p>
 </section>
+
 
 <!-- About -->
 <section id="about" class="content-section">
-  <h2>About BST</h2>
+  <h2>🌳 About Binary Search Tree</h2>
+  
+  <div class="about-intro">
+    <p>
+      A <span class="highlight">Binary Search Tree (BST)</span> is a powerful data structure that allows fast searching, insertion, and deletion — usually 
+      <span class="highlight">O(log n)</span> for balanced trees.  
+    </p>
+    <p>They are widely used for:</p>
+    <ul>
+      <li>🔹 Dynamic sets and dictionaries</li>
+      <li>🔹 Maintaining sorted data</li>
+      <li>🔹 Database indexing and searching</li>
+      <li>🔹 Range queries and nearest-neighbor searches</li>
+    </ul>
+  </div>
+
+  <h3>🌲 Tree Traversals</h3>
   <p>
-    BSTs make searching, insertion, and deletion efficient (usually <span class="highlight">O(log n)</span> for balanced trees). They are used for:
+    Tree traversal means visiting all nodes in a specific order.  
+    There are three main types of <span class="highlight">Depth-First Traversals</span>:
   </p>
-  <ul>
-    <li>Dynamic sets and dictionaries</li>
-    <li>Maintaining sorted data</li>
-    <li>Database indexing and searching</li>
-    <li>Range queries and nearest-neighbor searches</li>
-  </ul>
-  <p><span class="highlight">Traversals:</span></p>
-  <ul>
-    <li><span class="highlight">Inorder:</span> Left → Root → Right (ascending order)</li>
-    <li><span class="highlight">Preorder:</span> Root → Left → Right</li>
-    <li><span class="highlight">Postorder:</span> Left → Right → Root</li>
-  </ul>
+
+  <div class="traversal-container">
+    <!-- Inorder -->
+    <div class="traversal-card">
+      <h4>1️⃣ Inorder Traversal <br><small>(Left → Root → Right)</small></h4>
+      <p>
+        Visits the left subtree first, then the root node, and finally the right subtree.  
+        Produces <span class="highlight">sorted order</span> in a BST.
+      </p>
+      <div class="steps">
+        <strong>Algorithm Steps:</strong>
+        <ol>
+          <li>Traverse the left subtree</li>
+          <li>Visit (print/process) the root node</li>
+          <li>Traverse the right subtree</li>
+        </ol>
+      </div>
+      <p><strong>Example:</strong><br>20 → 30 → 40 → 50 → 60 → 70 → 80</p>
+    </div>
+
+    <!-- Preorder -->
+    <div class="traversal-card">
+      <h4>2️⃣ Preorder Traversal <br><small>(Root → Left → Right)</small></h4>
+      <p>
+        Visits the root node first, then the left subtree, and finally the right subtree.  
+        Useful for creating <span class="highlight">copies of trees</span> or prefix expressions.
+      </p>
+      <div class="steps">
+        <strong>Algorithm Steps:</strong>
+        <ol>
+          <li>Visit (print/process) the root node</li>
+          <li>Traverse the left subtree</li>
+          <li>Traverse the right subtree</li>
+        </ol>
+      </div>
+      <p><strong>Example:</strong><br>50 → 30 → 20 → 40 → 70 → 60 → 80</p>
+    </div>
+
+    <!-- Postorder -->
+    <div class="traversal-card">
+      <h4>3️⃣ Postorder Traversal <br><small>(Left → Right → Root)</small></h4>
+      <p>
+        Visits the left subtree first, then the right subtree, and finally the root node.  
+        Often used for <span class="highlight">deleting a tree</span> or obtaining postfix expressions.
+      </p>
+      <div class="steps">
+        <strong>Algorithm Steps:</strong>
+        <ol>
+          <li>Traverse the left subtree</li>
+          <li>Traverse the right subtree</li>
+          <li>Visit (print/process) the root node</li>
+        </ol>
+      </div>
+      <p><strong>Example:</strong><br>20 → 40 → 30 → 60 → 80 → 70 → 50</p>
+    </div>
+  </div>
 </section>
+
 
  <!-- Visualization -->
   <section id="visualize">
-    <h2>BST Visualization</h2>
+    <h2>Binary Search Tree Visualization</h2>
     <div class="controls">
       <input type="number" id="nodeValue" placeholder="Enter value">
       <button id="insertNodeBtn">Insert Node</button>
@@ -83,24 +157,27 @@
     <p id="traversalResult">Click a traversal to see output.</p>
   </section>
 
-  <!-- Contributors -->
-  <section id="contributors">
-    <h2>Project Contributors</h2>
-    <div class="team-members">
-      <div class="team-member">
-        <img src="./Assets/Profile.jpeg" alt="Aditya Sawant">
-        <h3>Aditya Sawant</h3>
-        <p>Handled Visual Representation</p>
-        <small>Expert in UI/UX and tree visualization</small>
-      </div>
-      <div class="team-member">
-        <img src="./Assets/chirag.jpeg" alt="Chirag Satpute">
-        <h3>Chirag Satpute</h3>
-        <p>Worked on BST Algorithms</p>
-        <small>Expert in BST and data structures</small>
-      </div>
+ <!-- Contributors -->
+<section id="contributors">
+  <h2>Project Contributors</h2>
+  <p class="contributors-intro">
+    Meet the developers behind this project — bringing logic, design, and visualization together.
+  </p>
+  <div class="team-members">
+    <div class="team-member">
+      <img src="./Assets/Profile.jpeg" alt="Aditya Sawant">
+      <h3>Aditya Sawant</h3>
+      <p>Handled Visual Representation</p>
+      <small>Expert in UI/UX and tree visualization</small>
     </div>
-  </section>
+    <div class="team-member">
+      <img src="./Assets/chirag.jpeg" alt="Chirag Satpute">
+      <h3>Chirag Satpute</h3>
+      <p>Worked on BST Algorithms</p>
+      <small>Expert in BST and data structures</small>
+    </div>
+  </div>
+</section>
 
   <!-- Footer -->
   <footer>

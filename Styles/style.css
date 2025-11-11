@@ -117,6 +117,17 @@
         }
         }
 
+       .intro-image {
+  display: block;
+  margin: 15px auto;
+  max-width: 35%;   /* ⬅️ reduced from 60% to 35% */
+  height: auto;
+  border-radius: 8px;
+  
+}
+
+
+
     /* Footer */
     footer {
       background: #2c3e50;
