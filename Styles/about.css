@@ -62,21 +62,20 @@ body {
   color: #2c3e50;
 }
 
-/* 🌟 Traversal Container */
 .traversal-container {
   display: flex;
-  justify-content: space-between;   /* Even spacing */
+  justify-content: space-between; 
   align-items: stretch;
-  flex-wrap: wrap;                  /* Wraps on smaller screens */
-  gap: 30px;                        /* Balanced gap */
+  flex-wrap: wrap;                
+  gap: 30px;                       
   margin-top: 40px;
   padding: 0 10px;
 }
 
-/* 📦 Traversal Card */
+
 .traversal-card {
   background: #fff;
-  flex: 1 1 calc(33.33% - 30px);    /* 3 cards per row */
+  flex: 1 1 calc(33.33% - 30px);  
   min-width: 300px;
   max-width: 340px;
   padding: 25px;
@@ -121,7 +120,6 @@ body {
   margin-bottom: 12px;
 }
 
-/* 🌐 Responsive Design */
 @media (max-width: 992px) {
   .traversal-container {
     justify-content: center;

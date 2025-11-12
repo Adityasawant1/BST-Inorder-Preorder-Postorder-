@@ -103,6 +103,27 @@
       return arr;
     }
 
+    
+    insertNodeBtn.addEventListener('click', () => {
+      const value = parseInt(nodeValueInput.value);
+      if (!isNaN(value)) {
+        insert(value);
+        nodeValueInput.value = '';
+      } else {
+        alert("Enter a valid number!");
+      }
+    });
+
+    inorderBtn.addEventListener('click', () => highlightTraversal(inorder(root)));
+    preorderBtn.addEventListener('click', () => highlightTraversal(preorder(root)));
+    postorderBtn.addEventListener('click', () => highlightTraversal(postorder(root)));
+
+    resetBtn.addEventListener('click', () => {
+      root = null;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      traversalResult.textContent = "Click a traversal to see output.";
+    });
+
     function highlightTraversal(nodes) {
       let i = 0;
       const sequence = [];
@@ -124,27 +145,6 @@
         i++;
       }, 800);
     }
-
-    insertNodeBtn.addEventListener('click', () => {
-      const value = parseInt(nodeValueInput.value);
-      if (!isNaN(value)) {
-        insert(value);
-        nodeValueInput.value = '';
-      } else {
-        alert("Enter a valid number!");
-      }
-    });
-
-    inorderBtn.addEventListener('click', () => highlightTraversal(inorder(root)));
-    preorderBtn.addEventListener('click', () => highlightTraversal(preorder(root)));
-    postorderBtn.addEventListener('click', () => highlightTraversal(postorder(root)));
-
-    resetBtn.addEventListener('click', () => {
-      root = null;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      traversalResult.textContent = "Click a traversal to see output.";
-    });
-
 
 
 

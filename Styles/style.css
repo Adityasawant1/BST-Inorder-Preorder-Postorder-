@@ -10,7 +10,7 @@
       color: #333;
     }
 
-    /* Header / Navbar */
+   
     header {
       background: #3498db;
       color: white;
@@ -20,7 +20,7 @@
       z-index: 1000;
     }
 
-   /* Navbar styles */
+  
         .navbar {
         display: flex;
         justify-content: space-between;
@@ -31,13 +31,13 @@
         color: #fff;
         }
 
-        /* Logo */
+        
         .navbar .logo {
         font-size: 1.6rem;
         font-weight: bold;
         }
 
-        /* Nav Links */
+        
         .nav-links {
         display: flex;
         gap: 20px;
@@ -55,9 +55,9 @@
         color: #f1c40f;
         }
 
-        /* Hamburger icon */
+        
         .hamburger {
-        display: none; /* hidden on desktop */
+        display: none;
         flex-direction: column;
         cursor: pointer;
         gap: 5px;
@@ -118,13 +118,13 @@
         }
 
        .intro-image {
-  display: block;
-  margin: 15px auto;
-  max-width: 35%;   /* ⬅️ reduced from 60% to 35% */
-  height: auto;
-  border-radius: 8px;
-  
-}
+        display: block;
+        margin: 15px auto;
+        max-width: 35%;   /* ⬅️ reduced from 60% to 35% */
+        height: auto;
+        border-radius: 8px;
+        
+        }
 
 
 
